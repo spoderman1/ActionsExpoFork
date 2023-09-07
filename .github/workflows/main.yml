@@ -25,5 +25,6 @@ jobs:
         working-directory: ./Actions
         run: yarn install
 
-      - name: 🚀 Build app
-        run: eas build --platform android
+      - name: 🚀 Build app for Android
+        working-directory: ./Actions
+        run: eas build -e preview -p android --non-interactive
