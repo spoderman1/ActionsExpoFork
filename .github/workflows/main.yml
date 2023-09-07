@@ -22,7 +22,8 @@ jobs:
           token: RytOuGWp469JWRhBN4Nq8YKH-76t4CT3xUei1Y9D
 
       - name: 📦 Install dependencies
-        run: cd Actions && yarn install
+        working-directory: ./Actions
+        run: yarn install
 
       - name: 🚀 Build app
         run: eas build --platform android
