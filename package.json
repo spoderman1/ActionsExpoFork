@@ -1,0 +1,8 @@
+{
+  "name": "ActionsExpo",
+  "version": "1.0.0",
+  "main": "./Actions/App.tsx",
+  "repository": "https://github.com/Lekau/ActionsExpo.git",
+  "author": "Lekau Mamabolo <lekau9222@gmail.com>",
+  "license": "MIT"
+}
