@@ -22,7 +22,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.lekau.actions"
+      "package": "com.lekau.actions",
+      "versionCode": 1,
+      "androidSdkVersion": "31"
     },
     "web": {
       "favicon": "./assets/favicon.png"
