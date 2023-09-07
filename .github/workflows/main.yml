@@ -28,3 +28,11 @@ jobs:
       - name: 🚀 Build app for Android
         working-directory: ./Actions
         run: eas build -e preview -p android --non-interactive
+        
+      - name: Set up gcloud CLI
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          version: 'latest'
+          service_account_key: ${{ secrets.service_account }}
+          project_id: versofy-home
+    
