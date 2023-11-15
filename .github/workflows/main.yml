@@ -1,10 +1,15 @@
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types: 
+      - closed
 jobs:
   build:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    #outputs:
+    #  build-artifact-name: 
     steps:
       - name: 🏗 Setup repo
         uses: actions/checkout@v3
@@ -30,8 +35,20 @@ jobs:
         run: eas build -e preview -p android --non-interactive
         
       - name: Set up gcloud CLI
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@main
         with:
-          service_account_key: ${{ secrets.service_account }}
+          service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           project_id: versofy-home
-    
+  firebase-test:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@main
+        with:
+          service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          project_id: versofy-home
+      - name: Deploy to Firebase
+        run: bash ./Actions/firebase_test.sh
