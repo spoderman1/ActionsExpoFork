@@ -8,8 +8,6 @@ jobs:
   build:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    #outputs:
-    #  build-artifact-name: 
     steps:
       - name: 🏗 Setup repo
         uses: actions/checkout@v3
@@ -34,6 +32,9 @@ jobs:
         working-directory: ./Actions
         run: eas build -e preview -p android --non-interactive
 
+      - name: Rename APK
+        run: bash ./rename.sh
+
   #- name: Check APK exists
   #  id: check_apk
   #  run: |
@@ -57,12 +58,12 @@ jobs:
           project_id: qa-test-app-d5dc3
       - name: Run Firebase Test Lab
         #run: |
-        #gcloud firebase test android run \
-        #  --type robo \
-        #  --app Actions/build/app.apk \
-        #  --device model=Nexus6,version=21,locale=en,orientation=portrait \
-        #  --timeout 30m
-        run: echo 'Run test lab ---'
+        gcloud firebase test android run \
+          --type robo \
+          --app Actions/build/app.apk \
+          --device model=Nexus6,version=21,locale=en,orientation=portrait \
+          --timeout 30m
+        run: echo 'Run test lab, new PR'
 
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
