@@ -34,17 +34,6 @@ jobs:
 
       - name: Rename APK
         run: bash ./rename.sh
-
-  #- name: Check APK exists
-  #  id: check_apk
-  #  run: |
-  #    APK_PATH="./build/app.apk"
-  #    if [ -f "$APK_PATH" ]; then
-  #      echo "::set-output name=apk_path::$APK_PATH"
-  #    else
-  #      echo "APK not found at $APK_PATH"
-  #      exit 1
-  #    fi
   firebase-test:
     needs:
       - build
@@ -57,15 +46,13 @@ jobs:
           service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           project_id: qa-test-app-d5dc3
       - name: Run Firebase Test Lab
-        run: |
-        gcloud firebase test android run \
+        run: gcloud firebase test android run \
           --type robo \
           --app Actions/build/app.apk \
-          --device model=Nexus6,version=21,locale=en,orientation=portrait \
+          --device model=Nexus6,version=21,locale=en,orientatio=portrait \
           --timeout 15m
-        run: echo 'Run test lab, new PR'
 
-      env:
+        env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - name: Firebase Test Lab robo testing completed
         run: echo "Firebase Test Lab robo testing completed"
