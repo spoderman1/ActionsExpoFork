@@ -65,7 +65,7 @@ jobs:
           --timeout 15m
         run: echo 'Run test lab, new PR'
 
-        env:
+      env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - name: Firebase Test Lab robo testing completed
         run: echo "Firebase Test Lab robo testing completed"
