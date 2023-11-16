@@ -2,9 +2,9 @@
 
 # Navigate to the build directory
 ls
-cd /Actions/build
-printf "---------------"
-ls
+cd ./Actions/build
+#printf "---------------"
+#ls
 printf "in rename script"
 
 # Find the APK file and rename it to latest-build.apk
