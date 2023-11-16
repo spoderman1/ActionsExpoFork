@@ -32,8 +32,8 @@ jobs:
       #  working-directory: ./Actions
       #  run: eas build -e preview -p android --non-interactive
 
-      - name: Rename APK
-        run: bash ./Actions/rename.sh
+      #- name: Rename APK
+      #  run: bash ./Actions/rename.sh
 
   firebase-test:
     needs:
