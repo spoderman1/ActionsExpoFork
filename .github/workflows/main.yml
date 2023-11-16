@@ -48,10 +48,7 @@ jobs:
           project_id: qa-test-app-d5dc3
       - name: Run Firebase Test Lab
         run: gcloud firebase test android run \
-          --type robo \
-          --app Actions/build/latest-build.apk \
-          --device model=Nexus6,version=21,locale=en,orientation=portrait \
-          --timeout 30m
+          --type robo --app Actions/build/latest-build.apk --device model=Nexus6,version=21,locale=en,orientation=portrait timeout 30m
 
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
