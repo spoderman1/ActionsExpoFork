@@ -33,7 +33,8 @@ jobs:
         run: eas build -e preview -p android --non-interactive
 
       - name: Rename APK
-        run: bash ./rename.sh
+        run: bash ./Actions/rename.sh
+        
   firebase-test:
     needs:
       - build
