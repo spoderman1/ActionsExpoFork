@@ -50,7 +50,7 @@ jobs:
           --type robo \
           --app Actions/build/app.apk \
           --device model=Nexus6,version=21,locale=en,orientatio=portrait \
-          --timeout 15m
+          --timeout 30m
 
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
