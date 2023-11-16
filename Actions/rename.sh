@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Navigate to the build directory
-cd ./build/
+ls
+cd /build
 printf "in rename script"
 
 # Find the APK file and rename it to latest-build.apk
