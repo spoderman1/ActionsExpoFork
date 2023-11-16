@@ -62,7 +62,7 @@ jobs:
           --type robo \
           --app Actions/build/app.apk \
           --device model=Nexus6,version=21,locale=en,orientation=portrait \
-          --timeout 30m
+          --timeout 15m
         run: echo 'Run test lab, new PR'
 
         env:
