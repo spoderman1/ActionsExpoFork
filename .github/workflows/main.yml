@@ -28,13 +28,13 @@ jobs:
         working-directory: ./Actions
         run: yarn install
 
-      - name: 🚀 Build app for Android
-        working-directory: ./Actions
-        run: eas build -e preview -p android --non-interactive
+      #- name: 🚀 Build app for Android
+      #  working-directory: ./Actions
+      #  run: eas build -e preview -p android --non-interactive
 
       - name: Rename APK
         run: bash ./Actions/rename.sh
-        
+
   firebase-test:
     needs:
       - build
