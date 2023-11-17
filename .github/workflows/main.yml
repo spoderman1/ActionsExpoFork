@@ -47,17 +47,29 @@ jobs:
           service_account_key: ${{ secrets.FIREBASE_ACCOUNT_FROM_FIREBASE }}
           project_id: qa-test-app-d5dc3
 
-      - name: 📲 Upload APK to Firebase
-        run: |
-          gsutil cp Actions/build/latest-build.apk gs://qa-test-app-d5dc3.appspot.com/latest-build.apk
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_ACCOUNT_FROM_FIREBASE }}
+      #- name: 📲 Upload APK to Firebase
+      #  run: |
+      #    gsutil cp Actions/build/latest-build.apk gs://qa-test-app-d5dc3.appspot.com/latest-build.apk
+      #  env:
+      #    GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_ACCOUNT_FROM_FIREBASE }}
+
+      - name: Upload app APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-debug
+          path: Actions/build/latest-build.apk
+      
+      - name: Download app APK
+        uses: actions/download-artifact@v1
+        with:
+          name: latest-build
+          path: Actions/test/latest-build.apk
 
 
       - name: Run Firebase Test Lab
         run: gcloud firebase test android run \
           --type robo \
-          --app "Actions/build/latest-build.apk" \
+          --app Actions/test/latest-build.apk \
           --device model=Nexus6,version=21,locale=en,orientation=portrait \
           --timeout 30m
 
