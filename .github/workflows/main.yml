@@ -69,7 +69,7 @@ jobs:
       - name: Run Firebase Test Lab
         run: gcloud firebase test android run \
           --type robo \
-          --app Actions/test/latest-build.apk \
+          --app "Actions/test/latest-build.apk" \
           --device model=Nexus6,version=21,locale=en,orientation=portrait \
           --timeout 30m
 
