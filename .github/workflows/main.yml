@@ -44,14 +44,14 @@ jobs:
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          service_account_key: ${{ secrets.FIREBASE_ACCOUNT_FROM_FIREBASE }}
           project_id: qa-test-app-d5dc3
 
       - name: 📲 Upload APK to Firebase
         run: |
           gsutil cp Actions/build/latest-build.apk gs://qa-test-app-d5dc3.appspot.com/latest-build.apk
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_ACCOUNT_FROM_FIREBASE }}
 
 
       - name: Run Firebase Test Lab
@@ -62,6 +62,6 @@ jobs:
           --timeout 30m
 
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_ACCOUNT_FROM_FIREBASE }}
       - name: Firebase Test Lab robo testing completed
         run: echo "Firebase Test Lab robo testing completed"
